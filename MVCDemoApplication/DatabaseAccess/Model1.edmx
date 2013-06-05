@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVCDemoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MVCDemoDBModelStoreContainer">
+          <EntitySet Name="Login" EntityType="MVCDemoDBModel.Store.Login" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PropertyMaster" EntityType="MVCDemoDBModel.Store.PropertyMaster" store:Type="Tables" store:Schema="dbo" store:Name="PropertyMaster">
+            <DefiningQuery>SELECT 
+      [PropertyMaster].[PropertyID] AS [PropertyID], 
+      [PropertyMaster].[PropertyName] AS [PropertyName], 
+      [PropertyMaster].[PropertyDescription] AS [PropertyDescription], 
+      [PropertyMaster].[LastModifiedUserID] AS [LastModifiedUserID], 
+      [PropertyMaster].[LastModfiedDateTime] AS [LastModfiedDateTime]
+      FROM [dbo].[PropertyMaster] AS [PropertyMaster]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="LastModifiedUserID" Type="int" Nullable="false" />
+          <Property Name="LastModfiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'MVCDemoDB.dbo.PropertyMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="PropertyMaster">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+            <PropertyRef Name="PropertyName" />
+            <PropertyRef Name="PropertyDescription" />
+            <PropertyRef Name="LastModifiedUserID" />
+            <PropertyRef Name="LastModfiedDateTime" />
+          </Key>
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PropertyDescription" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="LastModifiedUserID" Type="int" Nullable="false" />
+          <Property Name="LastModfiedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVCDemoDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MVCDemoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logins" EntityType="MVCDemoDBModel.Login" />
+          <EntitySet Name="PropertyMasters" EntityType="MVCDemoDBModel.PropertyMaster" />
+        </EntityContainer>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedUserID" Type="Int32" Nullable="false" />
+          <Property Name="LastModfiedDateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyMaster">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+            <PropertyRef Name="PropertyName" />
+            <PropertyRef Name="PropertyDescription" />
+            <PropertyRef Name="LastModifiedUserID" />
+            <PropertyRef Name="LastModfiedDateTime" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PropertyDescription" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="LastModifiedUserID" Type="Int32" Nullable="false" />
+          <Property Name="LastModfiedDateTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVCDemoDBModelStoreContainer" CdmEntityContainer="MVCDemoDBEntities">
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="MVCDemoDBModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastModifiedUserID" ColumnName="LastModifiedUserID" />
+                <ScalarProperty Name="LastModfiedDateTime" ColumnName="LastModfiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyMasters">
+            <EntityTypeMapping TypeName="MVCDemoDBModel.PropertyMaster">
+              <MappingFragment StoreEntitySet="PropertyMaster">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyDescription" ColumnName="PropertyDescription" />
+                <ScalarProperty Name="LastModifiedUserID" ColumnName="LastModifiedUserID" />
+                <ScalarProperty Name="LastModfiedDateTime" ColumnName="LastModfiedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="MVCDemoDBModel.Login" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCDemoDBModel.PropertyMaster" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
