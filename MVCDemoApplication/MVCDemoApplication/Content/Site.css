@@ -148,8 +148,9 @@ footer {
 #login {
     display: block;
     font-size: .85em;
-    margin: 0 0 10px;
-    text-align: right;
+    margin: 100px 100px 10px;
+    text-align: left;
+    
 }
 
     #login a {
@@ -507,6 +508,9 @@ textarea {
 }
 
 input.input-validation-error {
+    border: 1px solid #e80c4d;
+}
+.input-validation-error {
     border: 1px solid #e80c4d;
 }
 

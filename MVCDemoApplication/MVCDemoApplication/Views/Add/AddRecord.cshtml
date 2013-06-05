@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVCDemoApplication.Models.PropertyMaster>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRecord</title>
+</head>
+<h2>Add Record Successfull</h2>
+<body>
+
+    <div>
+        @{
+
+        var grid=new WebGrid(Model,canPage:true,rowsPerPage:5);
+         grid.Pager(WebGridPagerModes.NextPrevious);
+         @grid.GetHtml(
+         headerStyle:"header",
+         alternatingRowStyle:"alt",
+         columns:grid.Columns(
+         grid.Column("PropertyName"),
+              grid.Column("PropertyDescription")
+         ));  
+
+         }
+
+
+    </div>
+</body>
+</html>

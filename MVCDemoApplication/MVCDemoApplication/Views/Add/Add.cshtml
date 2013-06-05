@@ -1,0 +1,39 @@
+﻿@model MVCDemoApplication.Models.PropertyMaster
+
+@{
+    ViewBag.Title = "Add";
+}
+<head>
+   <link rel="stylesheet" type="text/css" href="~/Content/Site.css" /> 
+</head>
+<h2>Add</h2>
+<body>
+ @using (Html.BeginForm())
+ { 
+      <table border = "0px" >
+    <tr> 
+  <td>Property Name:</td> <td>@Html.TextBoxFor(x => x.PropertyName) </td>     
+     </tr>
+     <tr> 
+  <td>Property Description:</td> <td>@Html.TextAreaFor(x => x.PropertyDescription) </td>    
+     </tr>
+   @* <tr>
+    <td colspan=2> <label for="email">@Html.ValidationSummary()</label> </td>
+    </tr>*@
+    <tr>
+    <td colspan=2> <input type="submit" value="Add" />  
+    </td>
+    </tr>  
+       <tr>
+       </tr>
+       <tr>
+       </tr>
+       <tr>
+       <td>
+     
+       </td>
+       </tr>
+     </table>
+ } 
+ 
+     </body> 
